@@ -38,6 +38,14 @@
     [SRAudioRecorderManager sharedManager].maxDuration = 20;
     [SRAudioRecorderManager sharedManager].minDuration = 10;
     [SRAudioRecorderManager sharedManager].showCountdownPoint = 5;
+    
+    self.audioRecordBtn.recordButtonTouchDownBlock = ^(SRAudioRecordButton *recordButton) {
+        // do what you want more...
+    };
+    
+    self.audioRecordBtn.recordButtonTouchUpInsideBlock = ^(SRAudioRecordButton *recordButton) {
+        // do what you want more...
+    };
 }
 
 - (void)audioRecorderManagerAVAuthorizationStatusDenied {

@@ -128,8 +128,8 @@ NSString * const SRAudioRecorderManagerDidFinishRecordingNotification = @"SRAudi
         self.audioRecorderState = SRAudioRecorderStateCountdown;
     } else {
         [[SRAudioRecorderManager sharedManager].audioRecorder updateMeters];
-        float level = 0.0f; // The linear 0.0 .. 1.0 value we need.
-        float minDecibels = -80.0f; // Or use -60dB, which I measured in a silent room.
+        float level = 0.0f;
+        float minDecibels = -80.0f;
         float decibels = [[SRAudioRecorderManager sharedManager].audioRecorder peakPowerForChannel:0];
         if (decibels < minDecibels) {
             level = 0.0f;
@@ -141,7 +141,7 @@ NSString * const SRAudioRecorderManagerDidFinishRecordingNotification = @"SRAudi
             float inverseAmpRange = 1.0f / (1.0f - minAmp);
             float amp             = powf(10.0f, 0.05f * decibels);
             float adjAmp          = (amp - minAmp) * inverseAmpRange;
-            level = powf(adjAmp, 1.0f / root);
+            level                 = powf(adjAmp, 1.0f / root);
         }
         [[SRAudioRecordToastManager sharedManager] updateAudioPower:level];
     }

@@ -38,11 +38,11 @@ typedef NS_ENUM(NSInteger, SRAudioRecorderState) {
 
 @property (nonatomic, weak) id<SRAudioRecorderManagerDelegate> delegate;
 
-@property (nonatomic, strong, readonly) AVAudioRecorder *audioRecorder;
-
 @property (nonatomic, assign) SRAudioRecorderState audioRecorderState;
 
 @property (nonatomic, assign, readonly) NSTimeInterval recordingDuration;
+
+@property (nonatomic, strong, readonly) AVAudioRecorder *audioRecorder;
 
 /**
  The maximum duration of recoding audio, default is 60s.
