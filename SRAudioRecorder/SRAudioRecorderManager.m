@@ -128,29 +128,9 @@ NSString * const SRAudioRecorderManagerDidFinishRecordingNotification = @"SRAudi
     } else if ([self shouldShowCountdown]) {
         self.audioRecorderState = SRAudioRecorderStateCountdown;
     } else {
-<<<<<<< HEAD
         [self.audioRecorder updateMeters];
         float averagePower = [self.audioRecorder averagePowerForChannel:0];
-        NSLog(@"averagePower: %.2f", averagePower);
         float level = (1.0 / 60.0) * (averagePower + 60.0); // 音频强度范围是 -60 到 0
-=======
-        [[SRAudioRecorderManager sharedManager].audioRecorder updateMeters];
-        float level = 0.0f;
-        float minDecibels = -80.0f;
-        float decibels = [[SRAudioRecorderManager sharedManager].audioRecorder peakPowerForChannel:0];
-        if (decibels < minDecibels) {
-            level = 0.0f;
-        } else if (decibels >= 0.0f) {
-            level = 1.0f;
-        } else {
-            float root            = 2.0f;
-            float minAmp          = powf(10.0f, 0.05f * minDecibels);
-            float inverseAmpRange = 1.0f / (1.0f - minAmp);
-            float amp             = powf(10.0f, 0.05f * decibels);
-            float adjAmp          = (amp - minAmp) * inverseAmpRange;
-            level                 = powf(adjAmp, 1.0f / root);
-        }
->>>>>>> origin/master
         [[SRAudioRecordToastManager sharedManager] updateAudioPower:level];
     }
 }
