@@ -95,6 +95,7 @@ NSString * const SRAudioRecorderManagerDidFinishRecordingNotification = @"SRAudi
         }
         [self stopRecordingTimer];
     }
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
 }
 
 - (void)startRecordingTimer {
@@ -127,6 +128,12 @@ NSString * const SRAudioRecorderManagerDidFinishRecordingNotification = @"SRAudi
     } else if ([self shouldShowCountdown]) {
         self.audioRecorderState = SRAudioRecorderStateCountdown;
     } else {
+<<<<<<< HEAD
+        [self.audioRecorder updateMeters];
+        float averagePower = [self.audioRecorder averagePowerForChannel:0];
+        NSLog(@"averagePower: %.2f", averagePower);
+        float level = (1.0 / 60.0) * (averagePower + 60.0); // 音频强度范围是 -60 到 0
+=======
         [[SRAudioRecorderManager sharedManager].audioRecorder updateMeters];
         float level = 0.0f;
         float minDecibels = -80.0f;
@@ -143,6 +150,7 @@ NSString * const SRAudioRecorderManagerDidFinishRecordingNotification = @"SRAudi
             float adjAmp          = (amp - minAmp) * inverseAmpRange;
             level                 = powf(adjAmp, 1.0f / root);
         }
+>>>>>>> origin/master
         [[SRAudioRecordToastManager sharedManager] updateAudioPower:level];
     }
 }

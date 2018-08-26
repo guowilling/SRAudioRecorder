@@ -27,16 +27,18 @@
 }
 
 - (IBAction)playRecordAudio:(id)sender {
-    [[SRRecordingAudioPlayerManager sharedManager] playerWithFilePath:self.audioFilePath];
-    [[SRRecordingAudioPlayerManager sharedManager] play];
+    if (self.audioFilePath) {
+        [[SRRecordingAudioPlayerManager sharedManager] playerWithFilePath:self.audioFilePath];
+        [[SRRecordingAudioPlayerManager sharedManager] play];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [SRAudioRecorderManager sharedManager].delegate = self;
-    [SRAudioRecorderManager sharedManager].maxDuration = 20;
-    [SRAudioRecorderManager sharedManager].minDuration = 10;
+    [SRAudioRecorderManager sharedManager].maxDuration = 30;
+    [SRAudioRecorderManager sharedManager].minDuration = 3;
     [SRAudioRecorderManager sharedManager].showCountdownPoint = 5;
     
     self.audioRecordBtn.recordButtonTouchDownBlock = ^(SRAudioRecordButton *recordButton) {
