@@ -34,16 +34,6 @@
     return self;
 }
 
-- (AVAudioPlayer *)playerWithFilename:(NSString *)filename {
-    NSURL *URL = [[NSBundle mainBundle] URLForResource:filename withExtension:nil];
-    if (!URL) {
-        return nil;
-    }
-    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:URL error:nil];
-    _audioPlayer.delegate = self;
-    return _audioPlayer;
-}
-
 - (AVAudioPlayer *)playerWithFilePath:(NSString *)filePath {
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:filePath] error:nil];
     _audioPlayer.delegate = self;

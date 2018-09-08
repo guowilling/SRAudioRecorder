@@ -13,7 +13,6 @@
 
 + (instancetype)sharedManager;
 
-- (AVAudioPlayer *)playerWithFilename:(NSString *)filename;
 - (AVAudioPlayer *)playerWithFilePath:(NSString *)filePath;
 - (AVAudioPlayer *)playerWithURL:(NSURL *)URL;
 
